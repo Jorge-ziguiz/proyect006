@@ -25,7 +25,7 @@ public class EventoService {
         List<Evento> events = getAllEvents();
         for (Evento e : events) {
             if (evento.equals(e) && evento.getDate().equalsIgnoreCase(e.getDate())) {
-                break;
+                return;
             }
         }
         events.add(evento);

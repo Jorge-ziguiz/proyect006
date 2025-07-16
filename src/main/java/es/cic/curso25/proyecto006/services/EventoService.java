@@ -24,7 +24,7 @@ public class EventoService {
         evento.setId(++contador);
         List<Evento> events = getAllEvents();
         for (Evento e : events) {
-            if (evento.equals(e)) {
+            if (evento.equals(e) && evento.getDate().equalsIgnoreCase(e.getDate())) {
                 break;
             }
         }

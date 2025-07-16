@@ -23,6 +23,11 @@ public class EventoService {
     public void createEvent(Evento evento) {
         evento.setId(++contador);
         List<Evento> events = getAllEvents();
+        for (Evento e : events) {
+            if (evento.equals(e)) {
+                break;
+            }
+        }
         events.add(evento);
     }
 

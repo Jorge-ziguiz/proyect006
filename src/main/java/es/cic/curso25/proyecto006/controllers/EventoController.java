@@ -1,8 +1,6 @@
 package es.cic.curso25.proyecto006.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +22,16 @@ public class EventoController {
     private EventoService eventoService;
 
     @PostMapping()
-    public void createEvent(@RequestBody Evento evento) {
-        eventoService.createEvent(evento);
+    public long createEvent(@RequestBody Evento evento) {
+        if (evento.getId() != null) {
+            throw new RuntimeException("al crear no puedes pasar por el ID");
+        }
+        return eventoService.createEvent(evento);
 
     }
 
     @GetMapping("/{id}")
-    public Evento getEvente(@PathVariable long id) {
+    public Evento getEvente(@PathVariable Long id) {
         return eventoService.getEvent(id);
 
     }
@@ -41,7 +42,7 @@ public class EventoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEvent(@PathVariable long id) {
+    public void deleteEvent(@PathVariable Long id) {
         eventoService.deleteEvent(id);
 
     }

@@ -2,7 +2,7 @@ package es.cic.curso25.proyecto006.pojos;
 
 public class Evento {
 
-    private long Id;
+    private Long Id;
 
     private String Date;
 
@@ -19,11 +19,11 @@ public class Evento {
         Description = description;
     }
 
-    public long getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         Id = id;
     }
 

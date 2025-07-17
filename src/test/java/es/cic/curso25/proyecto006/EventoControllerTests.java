@@ -20,7 +20,6 @@ public class EventoControllerTests {
     @Autowired
     private MockMvc Mvc;
 
-
     @Test
     public void testCreateEvent() {
     }
@@ -33,7 +32,7 @@ public class EventoControllerTests {
     @Test
     void testGetAllEvents() throws Exception {
         // Mvc.perform(get("/event")).andDo(print())
-        //         .andExpect(status().isOk()).andReturn();
+        // .andExpect(status().isOk()).andReturn();
 
     }
 

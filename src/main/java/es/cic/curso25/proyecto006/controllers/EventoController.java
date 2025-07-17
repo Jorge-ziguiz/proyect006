@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.cic.curso25.proyecto006.exepciones.InsertIDExepcion;
 import es.cic.curso25.proyecto006.pojos.Evento;
 import es.cic.curso25.proyecto006.services.EventoService;
 
@@ -23,8 +24,13 @@ public class EventoController {
 
     @PostMapping()
     public long createEvent(@RequestBody Evento evento) {
-        if (evento.getId() != null) {
-            throw new RuntimeException("al crear no puedes pasar por el ID");
+
+        try {
+            if (evento.getId() != null) {
+                throw new RuntimeException("no esta permitido insertar IDs manualmente");
+            }
+        } catch (RuntimeException e) {
+            throw new InsertIDExepcion("no esta permitido insertar IDs manualmente", e);
         }
         return eventoService.createEvent(evento);
 
@@ -32,6 +38,7 @@ public class EventoController {
 
     @GetMapping("/{id}")
     public Evento getEvente(@PathVariable Long id) {
+
         return eventoService.getEvent(id);
 
     }

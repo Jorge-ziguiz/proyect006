@@ -1,5 +1,6 @@
 package es.cic.curso25.proyecto006.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
@@ -18,12 +19,19 @@ public class EventoServiceIntegrationTest {
     @Test
     void testCreateEvent() {
         Evento evento = new Evento("17/07/2025", "Santander", "Formacion CIC", "una formacion de java en CIC");
+        evento.setId(Long.valueOf(2));
         long ResultoID = eventoService.createEvent(evento);
-        assertTrue(ResultoID > 0, String.format("el id no  debe ser no positivo %d",ResultoID));
+        assertTrue(ResultoID > 0, String.format("el id no  debe ser no positivo %d", ResultoID));
     }
 
     @Test
     void testDeleteEvent() {
+        Evento evento = new Evento("17/07/2025", "Santander", "Formacion CIC", "una formacion de java en CIC");
+        long ResultoID = eventoService.createEvent(evento);
+
+        Evento EventoRetorno = eventoService.getEvent(Long.valueOf(ResultoID));
+
+        assertEquals("Santander", EventoRetorno.getLocation());
 
     }
 

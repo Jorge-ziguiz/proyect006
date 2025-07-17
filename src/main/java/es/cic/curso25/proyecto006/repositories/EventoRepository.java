@@ -27,14 +27,29 @@ public class EventoRepository {
                 mayor = next;
             }
         }
-        return ++mayor;
+        Long id = Long.valueOf(++mayor);
+        evento.setId(id);
+        eventos.put(id, evento);
+        return id;
     }
 
-    // public Long update(){
-    
+    public Evento get(long id) {
+        Evento Resultado = new Evento();
 
+        eventos.values().stream().forEach(e -> {
+            if (e.getId().equals(id)) {
 
-    // }
+                Resultado.setId(e.getId());
+                Resultado.setLocation(e.getLocation());
+                Resultado.setTitle(e.getTitle());
+                Resultado.setDescription(e.getDescription());
+                Resultado.setDate(e.getDate());
+
+            }
+        });
+        return Resultado;
+
+    }
 
     private long getSiguienteConStreams() {
 

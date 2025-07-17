@@ -19,6 +19,8 @@ public class Evento {
         Description = description;
     }
 
+    public Evento(){}
+
     public Long getId() {
         return Id;
     }

@@ -19,7 +19,7 @@ public class EventoServiceIntegrationTest {
     @Test
     void testCreateEvent() {
         Evento evento = new Evento("17/07/2025", "Santander", "Formacion CIC", "una formacion de java en CIC");
-        evento.setId(Long.valueOf(2));
+        
         long ResultoID = eventoService.createEvent(evento);
         assertTrue(ResultoID > 0, String.format("el id no  debe ser no positivo %d", ResultoID));
     }

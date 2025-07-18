@@ -1,6 +1,8 @@
 package es.cic.curso25.proyecto006.controllers;
 
 import java.util.List;
+
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +24,17 @@ public class EventoController {
     @Autowired
     private EventoService eventoService;
 
+    private Logger LOGGER = LoggerFactory.getLogger(Evento.class);
+
     @PostMapping()
     public long createEvent(@RequestBody Evento evento) {
 
         try {
             if (evento.getId() != null) {
-                throw new RuntimeException("no esta permitido insertar IDs manualmente");
+                throw new RuntimeException();
             }
         } catch (RuntimeException e) {
+            LOGGER.error("no esta permitido insertar IDs manualmente", e);
             throw new InsertIDExepcion("no esta permitido insertar IDs manualmente", e);
         }
         return eventoService.createEvent(evento);

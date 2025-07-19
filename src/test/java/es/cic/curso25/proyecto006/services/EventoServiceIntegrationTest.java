@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
+import org.apache.commons.logging.Log;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,16 +21,16 @@ public class EventoServiceIntegrationTest {
     void testCreateEvent() {
         Evento evento = new Evento("17/07/2025", "Santander", "Formacion CIC", "una formacion de java en CIC");
         
-        long ResultoID = eventoService.createEvent(evento);
-        assertTrue(ResultoID > 0, String.format("el id no  debe ser no positivo %d", ResultoID));
+        Evento ResultoID = eventoService.createEvent(evento);
+        assertTrue(ResultoID.getId() > 0, String.format("el id no  debe ser no positivo %d", ResultoID));
     }
 
     @Test
     void testDeleteEvent() {
         Evento evento = new Evento("17/07/2025", "Santander", "Formacion CIC", "una formacion de java en CIC");
-        long ResultoID = eventoService.createEvent(evento);
+        Evento ResultoID = eventoService.createEvent(evento);
 
-        Evento EventoRetorno = eventoService.getEvent(Long.valueOf(ResultoID));
+        Evento EventoRetorno = eventoService.getEvent(Long.valueOf(ResultoID.getId()));
 
         assertEquals("Santander", EventoRetorno.getLocation());
 

@@ -18,7 +18,7 @@ import es.cic.curso25.proyecto006.pojos.Evento;
 import es.cic.curso25.proyecto006.services.EventoService;
 
 @RestController
-@RequestMapping("event")
+@RequestMapping(path = "/evento")
 public class EventoController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class EventoController {
     private Logger LOGGER = LoggerFactory.getLogger(Evento.class);
 
     @PostMapping()
-    public long createEvent(@RequestBody Evento evento) {
+    public Evento createEvent(@RequestBody Evento evento) {
 
         try {
             if (evento.getId() != null) {

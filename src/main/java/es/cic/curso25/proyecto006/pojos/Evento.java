@@ -1,23 +1,33 @@
 package es.cic.curso25.proyecto006.pojos;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
+@Table(name = "evento")
 public class Evento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @Version
+    private Long version;
+
     private String Date;
 
+
+    @Column(name = "Location")
     private String Location;
 
     private String Title;
 
+    @Column(length = 2000, unique = true)
     private String Description;
 
     public Evento(String date, String location, String title, String description) {
@@ -70,4 +80,5 @@ public class Evento {
         Description = description;
     }
 
+    
 }
